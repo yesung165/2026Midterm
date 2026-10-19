@@ -112,6 +112,28 @@ form.addEventListener("submit", (event) => {
 
 // TODO Q5-B: #categoryFilter의 change 이벤트, 분류별 filter 및 render
 
+const categoryFilter = document.querySelector("#categoryFilter");
+
+categoryFilter.addEventListener("change", function () {
+  const selected = categoryFilter.value;
+
+  if (selected === "all") {
+    render(loans);
+    return;
+  }
+
+  const filtered = [];
+
+
+
+  
+  for (let i = 0; i < loans.length; i++) {
+    if (loans[i].category === selected) {
+      filtered.push(loans[i]);
+    }
+  }
+  render(filtered);
+});
 
 
 render();

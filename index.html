@@ -20,7 +20,13 @@
         <form id="loanForm">
           <div class="mb-3">
             <label for="borrower">대여자</label>
-            <input id="borrower" name="borrower" type="text" minlength = 2 required />
+            <input
+              id="borrower"
+              name="borrower"
+              type="text"
+              minlength="2"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="equipment">기자재명</label>
@@ -34,20 +40,13 @@
               <option value="electronics">전자기기</option>
               <option value="filming">촬영기기</option>
               <option value="audio">음향기기</option>
-              
             </select>
           </div>
 
           <div class="mb-3">
             <label for="date" class="form-label">반납예정일</label>
-            <input
-              id="date"
-              name="date"
-              type="date"
-              required
-            />
+            <input id="date" name="date" type="date" required />
           </div>
-
 
           <button type="submit" id="addBtn">대여 등록</button>
         </form>
@@ -56,6 +55,15 @@
       <section class="panel">
         <h2>대여 현황</h2>
         <!-- TODO Q5-A: 분류 필터 select 추가 (id="categoryFilter") -->
+        <div class="mb-3">
+          <label for="categoryFilter" class="form-label">분류 필터</label>
+          <select id="categoryFilter" class="form-select">
+            <option value="" selected disabled>분류 선택</option>
+              <option value="electronics">전자기기</option>
+              <option value="filming">촬영기기</option>
+              <option value="audio">음향기기</option>
+          </select>
+        </div>
         <div class="table-responsive">
           <table id="loanTable">
             <thead>
