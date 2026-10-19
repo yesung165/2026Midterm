@@ -23,6 +23,19 @@ function render(list = loans) {
     const statusCell = document.createElement("td");
     // TODO Q4-A: loan.returned 값에 따라 상태 문구와 Bootstrap badge 클래스 설정
 
+   
+    const badge = document.createElement("span");
+    if (loan.returned == true) {
+      badge.textContent = "반납완료";
+      
+    } else {
+      badge.textContent = "대여중";
+     
+    }
+    statusCell.appendChild(badge);
+    tr.appendChild(statusCell);
+
+
 
     statusCell.textContent = loan.returned ? "완료" : "진행중";
     tr.appendChild(statusCell);
@@ -43,10 +56,20 @@ function render(list = loans) {
   });
   // TODO Q4-B: #summary에 전체 건수와 반납완료 건수 출력
 
+  let returnedCount = 0;
+  for (let i = 0; i < loans.length; i++) {
+    if (loans[i].returned) {
+      returnedCount = returnedCount + 1;
+    }
+  }
+  summary.textContent = "전체 " + loans.length + "건 / 반납완료 " + returnedCount + "건";
+  return;
 
 
-  summary.textContent = `총 ${loans.length}건의 대여 기록`;
+
+ 
 }
+ summary.textContent = `총 ${loans.length}건의 대여 기록`;
 
 function toggleReturn(id) {
   const loan = loans.find((row) => row.id === id);
@@ -81,7 +104,7 @@ form.addEventListener("submit", (event) => {
 
   form.reset();
 
-  
+
   message.textContent = "대여 등록이 완료되었습니다";
   render();
 });
