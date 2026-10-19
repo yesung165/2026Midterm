@@ -62,7 +62,29 @@ function removeLoan(id) {
 }
 
 // TODO Q3-B: submit 이벤트 처리, 유효성 검사, 새로운 객체 추가, reset, 메시지 및 render
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
 
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  loans.push({
+    id: nextId + 1,
+    borrower: form.borrower.value,
+    equipment: form.equipment.value,
+    category: form.category.value,
+    dueDate: form.date.value,
+    returned: false
+  });
+
+  form.reset();
+
+  
+  message.textContent = "대여 등록이 완료되었습니다";
+  render();
+});
 
 
 // TODO Q5-B: #categoryFilter의 change 이벤트, 분류별 filter 및 render
